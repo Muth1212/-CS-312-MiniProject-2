@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Weather Information</h1>
+        <form action="/get-weather" method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="location">Enter Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+
+        <% if (error) { %>
+            <p class="text-danger"><%= error %></p>
+        <% } %>
+
+        <% if (weather) { %>
+            <h2 class="mt-4">Weather Data for <%= location %>:</h2>
+            <h3>Current Temperature: <%= weather.current.temp %> °C</h3>
+            <h3>Weather Description: <%= weather.current.description %></h3>
+            
+            <!-- New section for outdoor activity suggestion -->
+            <div class="alert alert-info mt-4">
+                <% if (weather.current.temp < 20) { %>
+                    <p>It might be a bit chilly. Consider dressing warmly if you're going outside!</p>
+                <% } else if (weather.current.temp >= 20 && weather.current.temp < 30) { %>
+                    <p>It’s a nice day for outdoor activities! Enjoy your time outside!</p>
+                <% } else { %>
+                    <p>It's quite hot outside. Make sure to stay hydrated and take breaks in the shade!</p>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
