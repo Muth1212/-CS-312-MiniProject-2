@@ -27,7 +27,6 @@
             <h3>Current Temperature: <%= weather.current.temp %> °C</h3>
             <h3>Weather Description: <%= weather.current.description %></h3>
             
-            <!-- New section for outdoor activity suggestion -->
             <div class="alert alert-info mt-4">
                 <% if (weather.current.temp < 20) { %>
                     <p>It might be a bit chilly. Consider dressing warmly if you're going outside!</p>
